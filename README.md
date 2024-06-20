@@ -1,0 +1,1 @@
+# This project implements an online shopping cart using the MERN (MongoDB, Express.js, React.js, Node.js) stack. Users can browse products, add them to their cart, and complete purchases securely. The application leverages modern web technologies to provide a seamless shopping experience.
