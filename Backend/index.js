@@ -11,11 +11,13 @@ const { assert } = require("console");
 app.use(express.json());
 app.use(cors());
 
+
 //Database connection with mongodb
+
 mongoose.connect(
-  //"mongodb+srv://greatstackdev:05082002(tanu)@cluster0.faznc5i.mongodb.net/e-commerce"
   "mongodb+srv://greatstackdev:05082002tanu@cluster0.pboaqfh.mongodb.net/"
 );
+
 
 //API creation
 
@@ -281,5 +283,60 @@ app.listen(port, (error) => {
     console.log("server Running on port " + port);
   } else {
     console.log("Error :" + error);
+  }
+});
+
+// paypalService.js
+const paypal = require('@paypal/checkout-server-sdk');
+const Environment = paypal.core.SandboxEnvironment;
+const Client = paypal.core.PayPalHttpClient;
+
+const clientId = process.env.PAYPAL_CLIENT_ID;
+const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+
+const environment = new Environment(clientId, clientSecret);
+const client = new Client(environment);
+
+//module.exports = { client };
+
+// routes/paypal.js
+
+const router = express.Router();
+//const { client } = require('../services/paypalService');
+
+router.post('/create-order', async (req, res) => {
+  const request = new paypal.orders.OrdersCreateRequest();
+  request.prefer("return=representation");
+  request.requestBody({
+    intent: 'CAPTURE',
+    purchase_units: [{
+      amount: {
+        currency_code: 'USD',
+        value: '100.00' // Replace with actual amount
+      }
+    }]
+  });
+
+  try {
+    const order = await client.execute(request);
+    res.json({ id: order.result.id });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+//module.exports = router;
+
+// routes/paypal.js
+router.post('/capture-order', async (req, res) => {
+  const { orderID } = req.body;
+  const request = new paypal.orders.OrdersCaptureRequest(orderID);
+  request.requestBody({});
+
+  try {
+    const capture = await client.execute(request);
+    res.json(capture);
+  } catch (err) {
+    res.status(500).send(err.message);
   }
 });
