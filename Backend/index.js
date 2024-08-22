@@ -7,6 +7,7 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const { assert } = require("console");
+require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
@@ -15,7 +16,7 @@ app.use(cors());
 //Database connection with mongodb
 
 mongoose.connect(
-  "mongodb+srv://greatstackdev:05082002tanu@cluster0.pboaqfh.mongodb.net/"
+  process.env.MONGODB_URI
 );
 
 

@@ -38,7 +38,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: "none" }} to="/">
             Shop
           </Link>
-          {menu == "shop" ? <hr /> : <></>}
+          {menu ==="shop" ? <hr /> : <></>}
         </li>
         <li
           onClick={() => {
@@ -48,7 +48,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: "none" }} to="/mens">
             Men
           </Link>
-          {menu == "mens" ? <hr /> : <></>}
+          {menu === "mens" ? <hr /> : <></>}
         </li>
         <li
           onClick={() => {
@@ -58,7 +58,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: "none" }} to="/womens">
             Women
           </Link>
-          {menu == "womens" ? <hr /> : <></>}
+          {menu === "womens" ? <hr /> : <></>}
         </li>
         <li
           onClick={() => {
@@ -68,7 +68,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: "none" }} to="/Kids">
             Kids
           </Link>
-          {menu == "kids" ? <hr /> : <></>}
+          {menu === "kids" ? <hr /> : <></>}
         </li>
       </ul>
       <div className="nav-login-cart">

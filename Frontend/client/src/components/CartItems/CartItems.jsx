@@ -11,9 +11,12 @@ const CartItems = () => {
   const handleProceedToCheckout = () => {
     setShowPayPalButtons(true); // Show PayPal buttons when proceeding to checkout
   };
-  const PAYPAL_CLIENT_ID =
-    "ATsOww7RM22laTaXwwAoQozp87_jN_lqLZB_SvntvO-FnrATVNR6EFRBm-Z7vJPCZSx41b1uhs4iufLM";
 
+  const PAYPAL_CLIENT_ID = "ATsOww7RM22laTaXwwAoQozp87_jN_lqLZB_SvntvO-FnrATVNR6EFRBm-Z7vJPCZSx41b1uhs4iufLM";
+
+  console.log('PayPal Client ID:', PAYPAL_CLIENT_ID);
+
+    
   return (
     <div className="cartitems">
       <div className="cartitems-format-main">
